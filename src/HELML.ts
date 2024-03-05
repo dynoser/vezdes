@@ -10,11 +10,15 @@ export type HELMLobj = {
 }
 
 /* VEZDES:
- :URL: https://raw.githubusercontent.com/dynoser/vezdes/main/src/HELML.ts
- :TIME:  1709496716
+
+ :URL
+  ::--: https://raw.githubusercontent.com/dynoser/vezdes/main/src/HELML.ts
+  ::--: https://raw.githubusercontent.com/dynoser/HELML/master/helml-vscode-plugin/src/HELML.ts
+ #
+ :TIME:  1709671284
  :PUBKEY: aOk1rVVhWoaYZzThCNWiaBMGeaQMJ_hAZT-HTGfZkKY
- :HASH: MiizS4Hm5iNZYo7uOypevLzfM4WAM3X3u1TE6msPUok
- :SIGNATURE: 8wm9Zwk3Q_gnuKuPZdKYNNypmKcTW_HokQVR2Q_1nJpcxnlpM72OdhNwKpOJIgfBh78A7giFnRHAV7aX5RVuAw
+ :HASH: T77a4cMkHu8c74OKZyT9TCKcdC0rHBxDoV6SD5go8Zk
+ :SIGNATURE: CVXYSKXsl-bRuOS478zoomlTUEMz2OF8zHxzoZYozam_EFWiKJoMiXMJXWpppbtKo-Qn3Oasnh_Av-g2ytG6Dg
 # /VEZDES */
 
 export default class HELML {
@@ -177,7 +181,7 @@ export default class HELML {
     }
     
     public static decode(
-        srcRows: string,
+        srcRows: string | string[],
         getLayers: number | string | (string | number)[] = [0]
     ): HELMLobj {
 
@@ -198,39 +202,45 @@ export default class HELML {
         let lvlCh: string = ':';
         let spcCh: string = ' ';
 
-        // Search postfix
-        let postfixIndex = srcRows.indexOf('~#'); //~#: ~
-        if (postfixIndex >= 0 && srcRows.charAt(postfixIndex+4) === '~') {
-            // get control-chars from postfix
-            lvlCh = srcRows.charAt(postfixIndex+2);
-            spcCh = srcRows.charAt(postfixIndex+3);
+        let rowsArr: string[];
 
-            // skip prefix
-            let stpos: number = 0;
-            for(; stpos < srcRows.length; stpos++) {
-                const ch = srcRows[stpos];
-                if (ch !== ' ' && ch !== "\t" && ch != '~') break;
+        if (typeof srcRows === 'string') {
+            // Search postfix
+            let postfixIndex = srcRows.indexOf('~#'); //~#: ~
+            if (postfixIndex >= 0 && srcRows.charAt(postfixIndex+4) === '~') {
+                // get control-chars from postfix
+                lvlCh = srcRows.charAt(postfixIndex+2);
+                spcCh = srcRows.charAt(postfixIndex+3);
+
+                // skip prefix
+                let stpos: number = 0;
+                for(; stpos < srcRows.length; stpos++) {
+                    const ch = srcRows[stpos];
+                    if (ch !== ' ' && ch !== "\t" && ch != '~') break;
+                }
+
+                // cut string between prefix and postfix
+                srcRows = srcRows.substring(stpos, postfixIndex);
             }
 
-            // cut string between prefix and postfix
-            srcRows = srcRows.substring(stpos, postfixIndex);
+            // Detect line divider
+            let ChEOL = "\n";
+            for (ChEOL of ["\r\n", "\r", "\n"]) {
+                if (srcRows.indexOf(ChEOL) !== -1) break;
+            }
+            
+            // Replace all ~ to line divider
+            if (srcRows.indexOf('~')>=0) {
+                srcRows = srcRows.replace(/~/gm, ChEOL);
+            }
+
+            // Explode string to lines
+            rowsArr = srcRows.split(ChEOL);
+        } else {
+            rowsArr = srcRows;
         }
 
-        // Detect line divider
-        let exploder_ch = "\n";
-        for (exploder_ch of ["\r\n", "\r", "\n"]) {
-            if (srcRows.indexOf(exploder_ch) !== -1) break;
-        }
-        
-        // Replace all ~ to line divider
-        if (srcRows.indexOf('~')>=0) {
-            srcRows = srcRows.replace(/~/gm, exploder_ch);
-        }
-
-        // Explode string to lines
-        let str_arr: string[] = srcRows.split(exploder_ch);
-
-        return HELML._decode(str_arr, layersList, lvlCh, spcCh);
+        return HELML._decode(rowsArr, layersList, lvlCh, spcCh);
     }
 
     public static _decode(strArr: string[], layersList: Set<string>, lvlCh: string, spcCh: string): HELMLobj {
