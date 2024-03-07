@@ -15,10 +15,10 @@ export type HELMLobj = {
   ::--: https://raw.githubusercontent.com/dynoser/vezdes/main/src/HELML.ts
   ::--: https://raw.githubusercontent.com/dynoser/HELML/master/helml-vscode-plugin/src/HELML.ts
  #
- :TIME:  1709671284
+ :TIME:  1709832700
  :PUBKEY: aOk1rVVhWoaYZzThCNWiaBMGeaQMJ_hAZT-HTGfZkKY
- :HASH: T77a4cMkHu8c74OKZyT9TCKcdC0rHBxDoV6SD5go8Zk
- :SIGNATURE: CVXYSKXsl-bRuOS478zoomlTUEMz2OF8zHxzoZYozam_EFWiKJoMiXMJXWpppbtKo-Qn3Oasnh_Av-g2ytG6Dg
+ :HASH: eQC9BLuHzBP0QCFjBRrf3S20rP0uPO6Anxc3ek9_vpk
+ :SIGNATURE: RYu-NZJXHC2ZVHjIvddQlO67VVAkobUM0WZ8XjNMKzBPKrW2RoJ-7TEXEtG5E31P5QixvE1_ZBPwM2bqC4JKCg
 # /VEZDES */
 
 export default class HELML {
