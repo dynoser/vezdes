@@ -1,4 +1,4 @@
-import type { fakeWindow } from './custom.d.ts';
+import type { fakeWindow } from './custom';
 
 declare let window: fakeWindow;
 
@@ -8,17 +8,18 @@ export type HELMLelemOut = string | number | null | boolean | undefined;
 export type HELMLobj = {
     [key: string]: HELMLelemOut | HELMLelemOut[] | HELMLobj;
 }
+export type HELMLany = { [key: string]: any; };
 
 /* VEZDES:
 
  :URL
-  ::--: https://raw.githubusercontent.com/dynoser/vezdes/main/src/HELML.ts
+  ::--: https://raw.githubusercontent.com/dynoser/vezdes/main/src/encodes/HELML.ts
   ::--: https://raw.githubusercontent.com/dynoser/HELML/master/helml-vscode-plugin/src/HELML.ts
  #
- :TIME:  1709832700
+ :TIME:  1710010124
  :PUBKEY: aOk1rVVhWoaYZzThCNWiaBMGeaQMJ_hAZT-HTGfZkKY
- :HASH: eQC9BLuHzBP0QCFjBRrf3S20rP0uPO6Anxc3ek9_vpk
- :SIGNATURE: RYu-NZJXHC2ZVHjIvddQlO67VVAkobUM0WZ8XjNMKzBPKrW2RoJ-7TEXEtG5E31P5QixvE1_ZBPwM2bqC4JKCg
+ :HASH: AlZ9RaOtWa5xoDsSKQ0sO56OZlTtz0RUynPhCRovIfo
+ :SIGNATURE: rKwWVgVeyeCsjz1n4jcXQagU1bcCQVwrUzEXGgL_3H9ygLg_leKrhtoRqqVwBcKiS6Hs4Y6TdjJ3hOOfRylOAQ
 # /VEZDES */
 
 export default class HELML {
