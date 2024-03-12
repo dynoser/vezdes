@@ -1,4 +1,4 @@
-/// <reference path="./custom.d.ts" />
+/// <reference path="../libs/custom.d.ts" />
 
 import AltBase64 from "./altbase64";
 
@@ -20,10 +20,10 @@ try {
 
 /* VEZDES:
  :PUBKEY: aOk1rVVhWoaYZzThCNWiaBMGeaQMJ_hAZT-HTGfZkKY
- :URL: https://raw.githubusercontent.com/dynoser/vezdes/main/src/base64alt.ts
- :HASH: dDszYtVORkHeZMH3NZ0q_lxKlU7KupN2s3WEtHsyGr8
- :TIME:  1709909446
- :SIGNATURE: f3AnghMOmy1FpaKYB8TwBOlRYVvIbUZMapZgDWJJha8xq8l0Xy-YSLrCaoIA7JHvm5d4wW8mJZp7SPZnmRWeAg
+ :URL: https://raw.githubusercontent.com/dynoser/vezdes/main/src/libs/base64alt.ts
+ :HASH: UToO41M9AtaU0P7E0YeeB6B_b3mAggeQORJXH2RWhiQ
+ :TIME:  1710238249
+ :SIGNATURE: E_vDMpFiJeW4DtrsimUakcwpSuTxmE-xEk6ij-1VRdnkj783F1eH8ElcMguI6UDNoKB6ZWQEaJdO47L4DM53AA
 # /VEZDES */
 
 export default class base64alt
