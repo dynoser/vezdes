@@ -13,7 +13,7 @@ export type HELMLany = { [key: string]: any; };
 /* VEZDES:
 
  :URL
-  ::--: https://raw.githubusercontent.com/dynoser/vezdes/main/src/encodes/HELML.ts
+  ::--: https://raw.githubusercontent.com/dynoser/vezdes/main/src/libs/HELML.ts
   ::--: https://raw.githubusercontent.com/dynoser/HELML/master/helml-vscode-plugin/src/HELML.ts
  #
  :TIME:  1710010124
