@@ -1,0 +1,175 @@
+{
+  "name": "vezdes",
+  "displayName": "vezdes",
+  "description": "Syncs a file with its latest version via its base link. VezdeSync.",
+  "version": "1.0.6",
+  "publisher": "dynoser",
+  "license": "MIT",
+  "preview": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dynoser/vezdes"
+  },
+  "engines": {
+    "vscode": "^1.67.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters",
+    "Other"
+  ],
+  "icon": "images/icon.png",
+  "activationEvents": [
+    "onStartupFinished",
+    "onWebviewPanel:vezdes"
+  ],
+  "main": "./out/extension.js",
+  "browser": "./out/web/extension.js",
+  "web": "out/web/extension.js",
+  "contributes": {
+    "vezdes": "VEZDES:~:DONTSIGN:  T~:URL: https://raw.githubusercontent.com/dynoser/vezdes/main/package.json~:HASH: FETuguAIwB_yoEHstmIg5Q-kdYpnI-HEFALRKuPFVus~:TIME:  1710415993~:EMPL:  0~~#: ~ /VEZDES",
+    "commands": [
+      {
+        "command": "vezdes.download",
+        "title": "Download URL to current editor"
+      },
+      {
+        "command": "vezdes.check",
+        "title": "Check remote versions by VEZDES"
+      },
+      {
+        "command": "vezdes.goHeader",
+        "title": "Go to VEZDES header"
+      },
+      {
+        "command": "vezdes.update",
+        "title": "Update by VEZDES"
+      },
+      {
+        "command": "vezdes.verify",
+        "title": "Verify VEZDES header"
+      },
+      {
+        "command": "vezdes.addURL",
+        "title": "Vezdes Add Base-URL"
+      },
+      {
+        "command": "vezdes.refresh",
+        "title": "Refresh VEZDES header"
+      },
+      {
+        "command": "vezdes.refreshBeforeSave",
+        "title": "Refresh VEZDES header before save"
+      },
+      {
+        "command": "vezdes.reload",
+        "title": "DROP local changes and download from baseURL"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "vezdes.vzMenu",
+        "label": "VEZDES",
+        "icon": "images/icon.png"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorTextFocus",
+          "submenu": "vezdes.vzMenu",
+          "group": "9_vezdes@1",
+          "order": 100
+        }
+      ],
+      "vezdes.vzMenu": [
+        {
+          "command": "vezdes.verify",
+          "when": "editorTextFocus && vezdes.haveVezdesHeader",
+          "group": "9_vezdes@1"
+        },
+        {
+          "command": "vezdes.check",
+          "label": "Check remote versions",
+          "when": "editorTextFocus && vezdes.inVezdesHeader",
+          "group": "9_vezdes@1"
+        },
+        {
+          "command": "vezdes.refresh",
+          "when": "editorTextFocus && vezdes.inVezdesHeader",
+          "group": "9_vezdes@1"
+        },
+        {
+          "command": "vezdes.download",
+          "when": "editorTextFocus && vezdes.canMenuDownload",
+          "group": "9_vezdes@1"
+        },
+        {
+          "command": "vezdes.goHeader",
+          "label": "Select VEZDES header",
+          "when": "editorTextFocus && vezdes.haveVezdesHeader && !vezdes.inVezdesHeader",
+          "group": "9_vezdes@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Vezdes",
+      "properties": {
+
+        "vezdes.forceHeaderMode": {
+          "type": "string",
+          "default": "Don't force anything",
+          "enum": [
+            "Don't force anything",
+            "Force Multi-line mode",
+            "Force Signle-line mode"
+          ],
+          "markdownDescription": "VEZDES-header write modes"
+        },
+
+        "vezdes.keyPairSignEd25519": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Your **Private Key** for ed25519 signatures"
+        },
+
+        "vezdes.scanPositionForHeader": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Auto-search empty-lines to create VEZDES Header"
+        },
+
+        "vezdes.gitHubAutoUri": {
+          "type": "string",
+          "default": "dynoser/vezdes",
+          "markdownDescription": "make github-raw URL (temporary developer setting)"
+        }
+
+      }
+    }
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "files": [
+    "node_modules/tweetnacl/**/*"
+  ],
+  "devDependencies": {
+    "@types/pako": "^2.0.3",
+    "@types/webpack-env": "^1.16.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.19.14",
+    "@types/vscode": "^1.65.0",
+
+    "source-map-loader": "^4.0.1",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.3.3",
+    "webpack": "^5.77.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "pako": "^2.1.0",
+    "tweetnacl": "^1.0.3"
+  }
+}
