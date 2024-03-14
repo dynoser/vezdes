@@ -2,7 +2,7 @@
   "name": "vezdes",
   "displayName": "vezdes",
   "description": "Syncs a file with its latest version via its base link. VezdeSync.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "dynoser",
   "license": "MIT",
   "preview": true,
@@ -27,7 +27,7 @@
   "browser": "./out/web/extension.js",
   "web": "out/web/extension.js",
   "contributes": {
-    "vezdes": "VEZDES:~:DONTSIGN:  T~:URL: https://raw.githubusercontent.com/dynoser/vezdes/main/package.json~:HASH: FETuguAIwB_yoEHstmIg5Q-kdYpnI-HEFALRKuPFVus~:TIME:  1710415993~:EMPL:  0~~#: ~ /VEZDES",
+    "vezdes": "VEZDES:~:PUBKEY: aOk1rVVhWoaYZzThCNWiaBMGeaQMJ_hAZT-HTGfZkKY~:URL: https://raw.githubusercontent.com/dynoser/vezdes/main/package.json~:HASH: 9Z7VSdWnbinTwjBSmSrLIlhCf4q8EdfJpNzq2zYEp_8~:TIME:  1710425799~:SIGNATURE: yeKqYQXWB32G3b3rGy_TKxCOqg1y2eZ2na-zckn5kNsesfxO7BKF5zPWIubw1SRMoxzHsNKduVJd8eDUZlRNDQ~:EMPL:  0~~#: ~ /VEZDES",
     "commands": [
       {
         "command": "vezdes.download",
@@ -139,10 +139,15 @@
           "markdownDescription": "Auto-search empty-lines to create VEZDES Header"
         },
 
-        "vezdes.gitHubAutoUri": {
-          "type": "string",
-          "default": "dynoser/vezdes",
-          "markdownDescription": "make github-raw URL (temporary developer setting)"
+        "vezdes.folderToUriList": {
+          "type": "array",
+          "default": [
+            "Work/vezdes => https://raw.githubusercontent.com/dynoser/vezdes/main/"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "URL auto-converter, format: `Local folder => left part of URL`"
         }
 
       }
